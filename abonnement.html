@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations sur l'abonnement</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #666;
+        }
+
+        .valid {
+            color: green;
+            font-weight: bold;
+        }
+
+        .expired {
+            color: red;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="client-name">Client: Nom Prénom</h1>
+        <p id="expiration-date">Date d'expiration: 2024-12-31</p>
+        <p id="validity-status" class="valid">Validité: Valide</p>
+
+        <div class="footer">
+            <p>Merci de votre fidélité !</p>
+        </div>
+    </div>
+
+    <script>
+        // Lire les paramètres de l'URL
+const urlParams = new URLSearchParams(window.location.search);
+const clientName = urlParams.get('name');
+const expirationDate = urlParams.get('expiration');
+const validity = urlParams.get('validity');
+
+// Afficher les informations dynamiquement
+document.getElementById('client-name').textContent = "Client: " + clientName;
+document.getElementById('expiration-date').textContent = "Date d'expiration: " + expirationDate;
+
+// Changer le style en fonction de la validité
+const validityStatusElement = document.getElementById('validity-status');
+validityStatusElement.textContent = "Validité: " + validity;
+if (validity === "Valide") {
+    validityStatusElement.classList.add('valid');
+} else {
+    validityStatusElement.classList.add('expired');
+}
+
+    </script>
+
+</body>
+</html>
